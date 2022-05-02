@@ -5,12 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 require('dotenv').config();
 const {
-    adminRoutes,
-    superAdminRoutes,
-    staffRoutes,
-    studentRoutes,
-    marksRoutes,
-    projectRoutes
+
+    processRoutes
 } = require('./src/routes');
 app.use(function (req, res, next) {
     res.contentType('application/json');
@@ -20,13 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 5000;
-//Routes
-app.use('/', adminRoutes);
-app.use('/', superAdminRoutes);
-app.use('/', staffRoutes);
-app.use('/', studentRoutes);
-app.use('/', marksRoutes);
-app.use('/', projectRoutes);
+
+app.use('/', processRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
